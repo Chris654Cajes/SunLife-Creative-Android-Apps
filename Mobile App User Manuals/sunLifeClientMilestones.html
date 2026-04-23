@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunLife Client Milestones - User Manual</title>
+    <link rel="icon" type="image/png" href="../App%20Icons/app_icon.png">
+    <link rel="shortcut icon" type="image/png" href="../App%20Icons/app_icon.png">
+    <style>
+        :root {
+            --primary: #fcba03;
+            --primary-dark: #e0a500;
+            --primary-light: #ffd966;
+            --primary-very-light: #fff8e1;
+            --on-primary: #1a1a1a;
+            --background: #FAFAFA;
+            --surface: #FFFFFF;
+            --text-primary: #1C1C1E;
+            --text-secondary: #6B6B6B;
+            --text-hint: #AEAEB2;
+            --divider: #F0F0F0;
+            --shadow: rgba(26, 35, 126, 0.1);
+            --card-background: #FFFFFF;
+            --status-new: #2196F3;
+            --status-pending: #FF9800;
+            --status-closed: #4CAF50;
+            --status-presented: #9C27B0;
+            --status-rejected: #F44336;
+            --status-new-light: #E3F2FD;
+            --status-pending-light: #FFF3E0;
+            --status-closed-light: #E8F5E9;
+            --status-presented-light: #F3E5F5;
+            --status-rejected-light: #FFEBEE;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --streak-color: #FF6B35;
+            --points-color: #fcba03;
+            --border-radius: 12dp;
+            --border-radius-large: 16dp;
+            --transition: all 0.3s ease;
+            --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            --font-sans-serif-black: 900;
+            --font-sans-serif-medium: 500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans-serif);
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            width: 90%;
+            background: var(--primary);
+            text-align: center;
+            margin: 20px auto;
+            position: relative;
+            padding: 48px 20px;
+            border-radius: 16px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .header-logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        h1 {
+            max-width: 1200px;
+            margin: 10px auto 0;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--divider);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .highlight {
+            background: var(--primary-light);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+            align-items: stretch;
+        }
+
+        .status-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 32px;
+            transition: transform 0.3s ease;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .status-points {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-right: 20px;
+            padding-left: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .status-info {
+            flex: 1;
+        }
+
+        .status-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .status-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .status-badge {
+            background: var(--text-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 60px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .status-new { border-left: 4px solid var(--status-new); }
+        .status-pending { border-left: 4px solid var(--status-pending); }
+        .status-closed { border-left: 4px solid var(--status-closed); }
+        .status-presented { border-left: 4px solid var(--status-presented); }
+        .status-rejected { border-left: 4px solid var(--status-rejected); }
+
+        .screenshot-section {
+            margin: 40px 0;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .screenshot-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+            max-width: 300px;
+            margin: 0 auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 9/16;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-frame {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 16px;
+            padding: 8px;
+            position: relative;
+        }
+
+        .status-bar {
+            height: 24px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .time-battery {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .app-content {
+            height: calc(100% - 24px);
+            background: white;
+            border-radius: 8px;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .screenshot-caption {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 16px;
+            border-radius: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--divider);
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            background: var(--primary-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .feature-text {
+            flex: 1;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+            align-items: stretch;
+        }
+
+        .action-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 32px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .action-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .action-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .navbar {
+            background: var(--surface);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 90%;
+            margin: 20px auto;
+            border-radius: 16px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 12px 20px;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 6px 16px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(252, 186, 3, 0.3);
+        }
+
+        .footer {
+            background: var(--primary);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: var(--on-primary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+                margin: 16px;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin: 20px 0;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+            h4 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+            <div class="header-logo-container">
+                <div class="logo">
+                    <img src="../App%20Icons/app_icon.png" alt="SunLife app icon">
+                </div>
+                <h1>Client Milestones - User Manual</h1>
+            </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-menu">
+            <a href="#introduction" class="nav-item">
+                <span>🏠</span>
+                Introduction
+            </a>
+            <a href="#points-system" class="nav-item">
+                <span>🏆</span>
+                Points System
+            </a>
+            <a href="#app-screens" class="nav-item">
+                <span>📱</span>
+                App Screens
+            </a>
+            <a href="#key-features" class="nav-item">
+                <span>⭐</span>
+                Key Features
+            </a>
+            <a href="#quick-actions" class="nav-item">
+                <span>🚀</span>
+                Quick Actions
+            </a>
+            <a href="#video-demo" class="nav-item">
+                <span>🎥</span>
+                Video Demo
+            </a>
+            <a href="#download" class="nav-item">
+                <span>📥</span>
+                Download
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Introduction -->
+        <section id="introduction">
+            <h2>Welcome to SunLife Client Milestones</h2>
+            <p>
+                SunLife Client Milestones is a comprehensive Android application designed for financial professionals 
+                who manage client relationships and track their progress through an innovative gamification system. 
+                This manual will guide you through all features and help you maximize your productivity 
+                and client management efficiency.
+            </p>
+        </section>
+
+        <!-- Points System -->
+        <section id="points-system">
+            <h2>🏆 Points System</h2>
+            <p>
+                Earn points based on client status progression and unlock achievements as you advance through different agent levels. 
+                The points system is designed to motivate consistent client management and celebrate your successes.
+            </p>
+
+            <div class="status-grid">
+                <!-- Newly Added -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="status-points status-new">10</div>
+                        <div class="status-info">
+                            <div class="status-title">Newly Added</div>
+                            <div class="status-description">Add a new client to the system</div>
+                        </div>
+                    </div>
+                    <div class="status-badge status-new">🆕</div>
+                </div>
+
+                <!-- Pending -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="status-points status-pending">25</div>
+                        <div class="status-info">
+                            <div class="status-title">Pending</div>
+                            <div class="status-description">Client status set to pending</div>
+                        </div>
+                    </div>
+                    <div class="status-badge status-pending">⏳</div>
+                </div>
+
+                <!-- Presented -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="status-points status-presented">50</div>
+                        <div class="status-info">
+                            <div class="status-title">Presented</div>
+                            <div class="status-description">Client presentation completed</div>
+                        </div>
+                    </div>
+                    <div class="status-badge status-presented">📊</div>
+                </div>
+
+                <!-- Closed -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="status-points status-closed">100</div>
+                        <div class="status-info">
+                            <div class="status-title">Closed</div>
+                            <div class="status-description">Client successfully closed</div>
+                        </div>
+                    </div>
+                    <div class="status-badge status-closed">✅</div>
+                </div>
+
+                <!-- Rejected -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="status-points status-rejected">150</div>
+                        <div class="status-info">
+                            <div class="status-title">Rejected</div>
+                            <div class="status-description">Client rejected - <span class="highlight">bonus points!</span></div>
+                        </div>
+                    </div>
+                    <div class="status-badge status-rejected">❌</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Screens -->
+        <section id="app-screens">
+            <h2>📱 App Screens</h2>
+            <p>
+                Navigate through the app with ease using our intuitive Material Design interface. 
+                Each screen is optimized for both productivity and visual appeal.
+            </p>
+
+            <div class="screenshot-section">
+                <h3>Dashboard Screen</h3>
+                <div class="screenshot-grid">
+                    <div class="screenshot-card">
+                        <div class="screenshot-image">
+                            <div class="phone-frame">
+                                <div class="status-bar">
+                                    <div class="time-battery">
+                                        <span>⚡</span>
+                                        <span>100%</span>
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: bold;">9:41 AM</div>
+                                </div>
+                                <div class="app-content">
+                                    <div style="background: var(--primary); color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; text-align: center;">
+                                        <div style="font-size: 16px; margin-bottom: 8px;">☀️ SunLife Client Milestones</div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <div style="font-size: 14px;">🔥 0 day streak</div>
+                                            <div style="font-size: 14px;">ℹ️</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center; padding: 20px;">
+                                        <div style="font-size: 48px; margin-bottom: 10px;">🌱</div>
+                                        <div style="font-size: 18px; font-weight: bold;">Rookie Agent</div>
+                                        <div style="font-size: 24px; color: var(--primary); margin: 8px 0;">0 Total Points</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                        <div class="card" style="background: var(--status-new-light); padding: 10px; border-radius: 8px;">
+                                            <div style="font-size: 20px; color: var(--status-new);">10</div>
+                                            <div>Newly Added</div>
+                                        </div>
+                                        <div class="card" style="background: var(--status-pending-light); padding: 10px; border-radius: 8px;">
+                                            <div style="font-size: 20px; color: var(--status-pending);">5</div>
+                                            <div>Pending</div>
+                                        </div>
+                                        <div class="card" style="background: var(--status-presented-light); padding: 10px; border-radius: 8px;">
+                                            <div style="font-size: 20px; color: var(--status-presented);">3</div>
+                                            <div>Presented</div>
+                                        </div>
+                                        <div class="card" style="background: var(--status-closed-light); padding: 10px; border-radius: 8px;">
+                                            <div style="font-size: 20px; color: var(--status-closed);">7</div>
+                                            <div>Closed</div>
+                                        </div>
+                                        <div class="card" style="background: var(--status-rejected-light); padding: 10px; border-radius: 8px;">
+                                            <div style="font-size: 20px; color: var(--status-rejected);">2</div>
+                                            <div>Rejected</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-caption">Dashboard with agent level, points, streak, and client statistics</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screenshot-section">
+                <h3>Client Management</h3>
+                <div class="screenshot-grid">
+                    <div class="screenshot-card">
+                        <div class="screenshot-image">
+                            <div class="phone-frame">
+                                <div class="status-bar">
+                                    <div class="time-battery">
+                                        <span>⚡</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: bold;">10:23 AM</div>
+                                </div>
+                                <div class="app-content">
+                                    <div style="background: var(--primary); color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="font-size: 24px;">←</div>
+                                        <div style="font-size: 22px; font-weight: bold;">Clients</div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <div style="background: white; color: var(--primary); padding: 4px 8px; border-radius: 4px;">⬇ CSV</div>
+                                            <div style="background: white; color: var(--primary); padding: 4px 8px; border-radius: 4px;">ℹ️</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                                        <div style="font-size: 48px; margin-bottom: 16px;">📋</div>
+                                        <div>No clients found</div>
+                                        <div style="font-size: 14px; margin-top: 8px;">Add your first client to get started!</div>
+                                    </div>
+                                    <div style="position: absolute; bottom: 20px; right: 20px;">
+                                        <div style="width: 56px; height: 56px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">➕</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-caption">Client list with search, filter, and floating action button</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screenshot-section">
+                <h3>Client Details & Forms</h3>
+                <div class="screenshot-grid">
+                    <div class="screenshot-card">
+                        <div class="screenshot-image">
+                            <div class="phone-frame">
+                                <div class="status-bar">
+                                    <div class="time-battery">
+                                        <span>⚡</span>
+                                        <span>75%</span>
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: bold;">10:23 AM</div>
+                                </div>
+                                <div class="app-content">
+                                    <div style="background: var(--primary); color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="font-size: 24px;">←</div>
+                                        <div style="font-size: 18px; font-weight: bold;">Client Details</div>
+                                    </div>
+                                    <div style="text-align: left;">
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Client Name *</label>
+                                            <input type="text" placeholder="Enter client name" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Contact Number *</label>
+                                            <input type="tel" placeholder="+1 234 567 8900" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Email Address *</label>
+                                            <input type="email" placeholder="client@example.com" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <span style="background: var(--status-pending); color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px;">Pending</span>
+                                            <span style="margin-left: 8px;">25 points</span>
+                                        </div>
+                                        <div style="display: flex; gap: 8px; margin-top: 20px;">
+                                            <button style="background: var(--primary); color: white; padding: 8px 16px; border: none; border-radius: 4px;">✏️ Edit</button>
+                                            <button style="background: var(--status-rejected); color: white; padding: 8px 16px; border: none; border-radius: 4px;">❌ Reject</button>
+                                            <button style="background: var(--status-rejected); color: white; padding: 8px 16px; border: none; border-radius: 4px;">🗑️ Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-caption">Client detail view with status management and action buttons</div>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="screenshot-image">
+                            <div class="phone-frame">
+                                <div class="status-bar">
+                                    <div class="time-battery">
+                                        <span>⚡</span>
+                                        <span>60%</span>
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: bold;">10:23 AM</div>
+                                </div>
+                                <div class="app-content">
+                                    <div style="background: var(--primary); color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="font-size: 24px;">←</div>
+                                        <div style="font-size: 18px; font-weight: bold;">Add Client</div>
+                                    </div>
+                                    <div style="text-align: left;">
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Client Name *</label>
+                                            <input type="text" placeholder="Enter client name" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Contact Number *</label>
+                                            <input type="tel" placeholder="+1 234 567 8900" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <label style="display: block; margin-bottom: 4px; font-weight: bold;">Email Address *</label>
+                                            <input type="email" placeholder="client@example.com" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 4px;">
+                                        </div>
+                                        <div style="display: flex; gap: 8px; margin-top: 20px;">
+                                            <button style="background: var(--primary); color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; flex: 1;">💾 Save Client</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-caption">Add/Edit client form with input fields and save button</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section id="key-features">
+            <h2>⭐ Key Features</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">Gamification System with milestones and achievements</div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">Real-time client statistics and progress tracking</div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-text">Advanced search and filtering capabilities</div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">📤</div>
+                    <div class="feature-text">CSV export for data backup and analysis</div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-text">Material Design with dark/light theme support</div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-text">150 bonus points for client rejection</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Quick Actions -->
+        <section id="quick-actions">
+            <h2>🚀 Quick Actions</h2>
+            <p>
+                Get started quickly with these essential actions and tips for maximizing your productivity.
+            </p>
+
+            <div class="quick-actions">
+                <div class="action-card">
+                    <div class="action-icon">➕</div>
+                    <div class="action-title">Add Your First Client</div>
+                    <p>Start building your client portfolio immediately</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">📋</div>
+                    <div class="action-title">View Points Criteria</div>
+                    <p>Understand how points are earned for each status</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">📤</div>
+                    <div class="action-title">Export Client Data</div>
+                    <p>Download your client list as CSV for backup</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">🔄</div>
+                    <div class="action-title">Check Daily Streak</div>
+                    <p>Maintain consistent activity for maximum points</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Demo -->
+        <section id="video-demo" style="margin-top: 20px;">
+<h2 style="text-align: center;">Video Demo</h2>
+            <div style="background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 100%); border-radius: 16px; padding: 24px; margin: 0 auto 16px auto;">
+                <p style="font-size: 1.1rem; color: var(--text-primary);">Watch this comprehensive video guide to learn how to navigate the app, add and manage clients, track their status progression, earn points through the gamification system, and unlock achievements. This demo covers all the essential features you need to get started.</p>
+            </div>
+            <div style="text-align: center;">
+                <video controls style="width: 100%; max-width: 350px; border-radius: 12px;">
+                    <source src="../Mobile Apps Demo/sunLifeClientMilestones.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- Download APK -->
+        <section id="download" style="margin-top: 30px; text-align: center;">
+            <h2>Download App</h2>
+            <div class="card" style="text-align: center;">
+                <p style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 16px;">Download the latest APK file to install SunLife Client Milestones on your Android device. This package contains the complete application with all features enabled. Simply download, transfer to your device, and install to start managing your clients with gamification.</p>
+                <a href="../APK Files/SunLifeClientMilestones.apk" download style="display: inline-block; background: var(--primary); color: var(--text-primary); padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                    Download APK
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="background: var(--primary); color: var(--on-primary); text-align: center; padding: 32px 20px; margin-top: 40px; border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h3 style="margin-bottom: 8px;">SunLife Client Milestones</h3>
+                <p style="margin-bottom: 16px;">Gamified client management for financial professionals</p>
+                <div style="opacity: 0.9; font-size: 0.9rem;">
+                    <p>© 2026 Sun Life Financial. All rights reserved.</p>
+                    <p>Version 1.2.0 | Built for SunLife Advisors</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunLife Mobile App User Manuals</title>
+    <link rel="icon" type="image/png" href="App%20Icons/app_icon.png">
+    <link rel="shortcut icon" type="image/png" href="App%20Icons/app_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #fcba03;
+            --primary-dark: #e0a500;
+            --primary-light: #ffd966;
+            --primary-very-light: #fff8e1;
+            --on-primary: #1a1a1a;
+            --background: #f5f5f5;
+            --surface: #ffffff;
+            --text-primary: #1C1C1E;
+            --text-secondary: #6B6B6B;
+            --text-hint: #AEAEB2;
+            --divider: #F0F0F0;
+            --card-radius: 16px;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--on-primary);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 var(--card-radius) var(--card-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .app-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .navbar {
+            background: var(--surface);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            padding: 15px 20px;
+            gap: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .nav-menu::-webkit-scrollbar-track {
+            background: var(--divider);
+            border-radius: 3px;
+        }
+
+        .nav-menu::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .nav-menu::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        .nav-item {
+            padding: 10px 24px;
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(252, 186, 3, 0.3);
+        }
+
+        .content-section {
+            padding: 40px 20px;
+            background: var(--background);
+        }
+
+        
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 35px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--card-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border-radius: var(--card-radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--on-primary);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .status-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .status-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .status-points {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .status-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .category-item {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s ease;
+        }
+
+        .category-item:hover {
+            transform: translateX(4px);
+        }
+
+        .category-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 24px;
+            min-height: 50px;
+        }
+
+        .step-item::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--on-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .step-content {
+            background: var(--surface);
+            padding: 16px;
+            border-radius: var(--card-radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #c99b00 100%);
+            color: var(--on-primary);
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: var(--card-radius) var(--card-radius) 0 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--on-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-wrap: nowrap;
+                padding: 10px 15px;
+            }
+
+            .nav-item {
+                flex-shrink: 0;
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-item {
+                padding-left: 50px;
+            }
+
+            .step-item::before {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img class="logo-icon" src="App%20Icons/app_icon.png" alt="SunLife app icon">
+                <div>
+                    <h1 class="app-title">SunLife Mobile App User Manuals</h1>
+                    <p class="app-subtitle">Comprehensive guides for all SunLife Android applications</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-menu">
+                <a href="Mobile App User Manuals/sunLifeClientMilestones.html" class="nav-item">
+                    <span class="material-icons">flag</span>
+                    Client Milestones
+                </a>
+                <a href="Mobile App User Manuals/SunLifeClientTactics.html" class="nav-item">
+                    <span class="material-icons">lightbulb</span>
+                    Client Tactics
+                </a>
+                <a href="Mobile App User Manuals/SunLifeFinancialPlanning.html" class="nav-item">
+                    <span class="material-icons">account_balance</span>
+                    Financial Planning
+                </a>
+                <a href="Mobile App User Manuals/sunLifeObjectionMaster.html" class="nav-item">
+                    <span class="material-icons">comment</span>
+                    Objection Master
+                </a>
+                <a href="Mobile App User Manuals/sunLifeFollowUpTracker.html" class="nav-item">
+                    <span class="material-icons">schedule</span>
+                    Follow Up Tracker
+                </a>
+                <a href="Mobile App User Manuals/sunLifeFinancialStoryBuilder.html" class="nav-item">
+                    <span class="material-icons">description</span>
+                    Financial Story Builder
+                </a>
+                <a href="Mobile App User Manuals/sunLifeClosingAssistant.html" class="nav-item">
+                    <span class="material-icons">handshake</span>
+                    Closing Assistant
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="content-section">
+            <h2 class="section-title">Welcome to SunLife Mobile Apps</h2>
+            <div class="card">
+                <p>Welcome to the comprehensive SunLife mobile application suite designed specifically for financial professionals. These three powerful Android applications help you manage client relationships, analyze rejection scenarios, and conduct financial planning surveys - all in one unified system.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">App Overview</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Client Milestones</h3>
+                    <p class="feature-description">Track client progress through a gamification system with points, achievements, and agent levels. Earn bonus points for every client status change.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Client Tactics</h3>
+                    <p class="feature-description">Analyze client rejections and discover recovery strategies. 15 comprehensive categories with 60+ specific reasons and 240+ tactical suggestions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Financial Planning</h3>
+                    <p class="feature-description">Comprehensive survey form for collecting client financial information, goals, and investment preferences.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Client Milestones - Key Features</h2>
+            <div class="card">
+                <h3 style="color: var(--primary-dark); margin-bottom: 16px;">Points System</h3>
+                <p> Earn points based on client status progression and unlock achievements as you advance through different agent levels.</p>
+                <div class="status-grid">
+                    <div class="status-card" style="border-left-color: #2196F3;">
+                        <div class="status-points" style="color: #2196F3;">10</div>
+                        <div class="status-title">Newly Added</div>
+                        <div class="status-description">Add a new client</div>
+                    </div>
+                    <div class="status-card" style="border-left-color: #FF9800;">
+                        <div class="status-points" style="color: #FF9800;">25</div>
+                        <div class="status-title">Pending</div>
+                        <div class="status-description">Client pending</div>
+                    </div>
+                    <div class="status-card" style="border-left-color: #9C27B0;">
+                        <div class="status-points" style="color: #9C27B0;">50</div>
+                        <div class="status-title">Presented</div>
+                        <div class="status-description">Client presented</div>
+                    </div>
+                    <div class="status-card" style="border-left-color: #4CAF50;">
+                        <div class="status-points" style="color: #4CAF50;">100</div>
+                        <div class="status-title">Closed</div>
+                        <div class="status-description">Client closed</div>
+                    </div>
+                    <div class="status-card" style="border-left-color: #F44336;">
+                        <div class="status-points" style="color: #F44336;">150</div>
+                        <div class="status-title">Rejected</div>
+                        <div class="status-description">Client rejected (bonus!)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary-dark); margin-bottom: 16px;">Core Features</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2;">
+                    <li>Gamification System with milestones and achievements</li>
+                    <li>Real-time client statistics and progress tracking</li>
+                    <li>Advanced search and filtering capabilities</li>
+                    <li>CSV export for data backup and analysis</li>
+                    <li>Material Design with dark/light theme support</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Client Tactics - Rejection Categories</h2>
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="category-title">Lack of Trust or Credibility</div>
+                    <div class="category-description">Client doesn't trust advisor or has past negative experiences</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Price / Affordability</div>
+                    <div class="category-description">Premiums seem too expensive or value perception is low</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Lack of Perceived Need</div>
+                    <div class="category-description">Client feels too young, healthy, or already covered</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Poor Timing</div>
+                    <div class="category-description">Financial constraints or competing priorities</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Information Overload</div>
+                    <div class="category-description">Too many options or complex terms cause confusion</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Lack of Urgency</div>
+                    <div class="category-description">No immediate trigger or perceived consequences</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Emotional Resistance</div>
+                    <div class="category-description">Discomfort discussing mortality or commitments</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Comparison Shopping</div>
+                    <div class="category-description">Client evaluating multiple advisors or offers</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-title">Product Mismatch</div>
+                    <div class="category-description">Plan doesn't fit client needs or budget</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Financial Planning - Survey Features</h2>
+            <div class="card">
+                <h3 style="color: var(--primary-dark); margin-bottom: 16px;">Survey Form Sections</h3>
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-content">
+                            <strong>Personal Information</strong> - Name, email, contact number
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-content">
+                            <strong>Family Status</strong> - Marital status, number of children
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-content">
+                            <strong>Financial Goals</strong> - Retirement, education, emergency funds
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-content">
+                            <strong>Financial Status</strong> - Existing investments, insurance knowledge
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-content">
+                            <strong>Savings Location</strong> - Where client keeps savings
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary-dark); margin-bottom: 16px;">Management Features</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2;">
+                    <li>Advanced filtering by name, email, marital status</li>
+                    <li>CSV export for data analysis</li>
+                    <li>Secure local data storage</li>
+                    <li>Mobile optimized interface</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">System Requirements</h2>
+            <div class="card">
+                <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2;">
+                    <li>Android 7.0 (API level 24) or higher</li>
+                    <li>Minimum 50MB storage space</li>
+                    <li>Internet connection for initial setup</li>
+                    <li>Screen resolution: 720p or higher recommended</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="Mobile App User Manuals/sunLifeClientMilestones.html">Client Milestones</a>
+                <a href="Mobile App User Manuals/SunLifeClientTactics.html">Client Tactics</a>
+                <a href="Mobile App User Manuals/SunLifeFinancialPlanning.html">Financial Planning</a>
+                <a href="Mobile App User Manuals/sunLifeObjectionMaster.html">Objection Master</a>
+                <a href="Mobile App User Manuals/sunLifeFollowUpTracker.html">Follow Up Tracker</a>
+                <a href="Mobile App User Manuals/sunLifeFinancialStoryBuilder.html">Financial Story Builder</a>
+                <a href="Mobile App User Manuals/sunLifeClosingAssistant.html">Closing Assistant</a>
+            </div>
+            <p>&copy; 2026 Sun Life Financial. All rights reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Version 1.0 | Built for SunLife Advisors</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

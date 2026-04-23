@@ -1,0 +1,68 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+vendor/
+packages/
+.DartTool/
+.pub/
+.flutter/
+.packages
+
+# Build outputs
+build/
+dist/
+out/
+coverage/
+*.zip
+*.apk
+*.ipa
+
+# IDE and editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Misc
+.env
+.env.*
+! .env.example
+.env.local
+.env.*.local
+
+# Backup files
+*~
+*.bak
+*.tmp
+*.temp
+
+# Generated files
+*.generated.*
+*.map
+*.min.js
+*.min.css
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+poetry.lock
+Pipfile.lock
+composer.lock
+Gemfile.lock

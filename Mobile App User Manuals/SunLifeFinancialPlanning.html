@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunLife Financial Planning - User Manual</title>
+    <link rel="icon" type="image/png" href="../App%20Icons/app_icon.png">
+    <link rel="shortcut icon" type="image/png" href="../App%20Icons/app_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #fcba03;
+            --primary-dark: #e5a800;
+            --primary-variant: #d49a00;
+            --on-primary: #000000;
+            --on-surface: #212121;
+            --surface: #ffffff;
+            --error: #B00020;
+            --on-error: #ffffff;
+            --background: #f5f5f5;
+            --on-background: #212121;
+            --card-background: #ffffff;
+            --divider: #e0e0e0;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-hint: #9e9e9e;
+            --white: #ffffff;
+            --black: #000000;
+            --indigo-500: #3f51b5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--on-primary);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-app-icon {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 24px;
+            display: block;
+            margin: 0 auto 18px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+            border: 3px solid rgba(255,255,255,0.35);
+        }
+
+        .app-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .app-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav-section {
+            background: var(--surface);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        .nav-item {
+            padding: 8px 20px;
+            margin: 5px;
+            background: var(--card-background);
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(252, 186, 3, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--on-primary);
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* App Screenshots */
+        .screenshots-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .screenshots-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .screenshot-card {
+            background: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .screenshot-frame {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 15px;
+            border-radius: 20px;
+            margin: 15px;
+        }
+
+        .screenshot-content {
+            background: var(--background);
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenshot-title {
+            background: var(--primary);
+            color: var(--on-primary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .screenshot-elements {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .screenshot-element {
+            background: var(--card-background);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .screenshot-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .screenshot-value {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .screenshot-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .screenshot-caption {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Step by Step Guide */
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--on-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-background);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .faq-question {
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--on-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-variant));
+        }
+
+        .faq-answer {
+            padding: 25px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-variant) 100%);
+            color: var(--on-primary);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--on-primary);
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--on-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--divider);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content fade-in-up">
+                <img class="header-app-icon" src="../App%20Icons/app_icon.png" alt="SunLife app icon">
+                <h1 class="app-title">SunLife Financial Planning</h1>
+                <p class="app-subtitle">Comprehensive Financial Planning Survey & Management System</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-section">
+        <div class="container">
+            <div class="nav-menu">
+                <a href="#features" class="nav-item">
+                    <span class="material-icons">star</span>
+                    Features
+                </a>
+                <a href="#screenshots" class="nav-item">
+                    <span class="material-icons">phone_android</span>
+                    App Screenshots
+                </a>
+                <a href="#guide" class="nav-item">
+                    <span class="material-icons">menu_book</span>
+                    User Guide
+                </a>
+                <a href="#faq" class="nav-item">
+                    <span class="material-icons">help</span>
+                    FAQ
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Features Section -->
+    <section id="features" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">assignment</span>
+                    </div>
+                    <h3 class="feature-title">Comprehensive Survey Form</h3>
+                    <p class="feature-description">
+                        Detailed financial planning questionnaire covering personal information, 
+                        family status, financial goals, investment preferences, and insurance needs.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">filter_list</span>
+                    </div>
+                    <h3 class="feature-title">Advanced Filtering</h3>
+                    <p class="feature-description">
+                        Powerful search and filter capabilities to quickly find specific survey 
+                        responses by name, email, marital status, or financial status.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">cloud_download</span>
+                    </div>
+                    <h3 class="feature-title">Data Export</h3>
+                    <p class="feature-description">
+                        Export survey data to CSV format for analysis, reporting, and integration 
+                        with other financial planning tools.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">dashboard</span>
+                    </div>
+                    <h3 class="feature-title">Intuitive Dashboard</h3>
+                    <p class="feature-description">
+                        Clean, modern interface with Material Design components for easy navigation 
+                        and excellent user experience.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">security</span>
+                    </div>
+                    <h3 class="feature-title">Secure Data Storage</h3>
+                    <p class="feature-description">
+                        Local storage with proper permissions management to ensure data privacy 
+                        and security for sensitive financial information.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <span class="material-icons">phone_android</span>
+                    </div>
+                    <h3 class="feature-title">Mobile Optimized</h3>
+                    <p class="feature-description">
+                        Fully responsive design that works seamlessly on all Android devices 
+                        with adaptive layouts and touch-friendly interfaces.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots-section">
+        <div class="container">
+            <h2 class="section-title">App Interface Screenshots</h2>
+            <div class="screenshots-container">
+                <!-- Main Screen -->
+                <div class="screenshot-card fade-in-up">
+                    <div class="screenshot-frame">
+                        <div class="screenshot-content">
+                            <div class="screenshot-title">SunLife Financial Planning</div>
+                            <div class="screenshot-elements">
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">App Logo</div>
+                                    <div class="screenshot-value">SunLife Brand Icon</div>
+                                </div>
+                                <button class="screenshot-button">Add Survey</button>
+                                <button class="screenshot-button">View Records</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-caption">
+                        <strong>Main Screen</strong><br>
+                        Clean and intuitive home screen with quick access to survey form and records management
+                    </div>
+                </div>
+
+                <!-- Survey Form Screen -->
+                <div class="screenshot-card fade-in-up">
+                    <div class="screenshot-frame">
+                        <div class="screenshot-content">
+                            <div class="screenshot-title">Survey Form</div>
+                            <div class="screenshot-elements">
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Personal Information</div>
+                                    <div class="screenshot-value">Name, Email, Contact</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Marital Status</div>
+                                    <div class="screenshot-value">Single, Married, Single Parent</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Financial Goals</div>
+                                    <div class="screenshot-value">Multiple selection options</div>
+                                </div>
+                                <button class="screenshot-button">Save Survey</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-caption">
+                        <strong>Survey Form</strong><br>
+                        Comprehensive form with card-based sections for organized data entry
+                    </div>
+                </div>
+
+                <!-- View Records Screen -->
+                <div class="screenshot-card fade-in-up">
+                    <div class="screenshot-frame">
+                        <div class="screenshot-content">
+                            <div class="screenshot-title">View Records</div>
+                            <div class="screenshot-elements">
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Filter Options</div>
+                                    <div class="screenshot-value">Name, Email, Status filters</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Survey Record</div>
+                                    <div class="screenshot-value">John Doe - john@email.com</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Quick Actions</div>
+                                    <div class="screenshot-value">Copy, Edit, Export options</div>
+                                </div>
+                                <button class="screenshot-button">Export CSV</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-caption">
+                        <strong>Records Management</strong><br>
+                        Advanced filtering and management interface with quick action buttons
+                    </div>
+                </div>
+
+                <!-- Survey Item Detail -->
+                <div class="screenshot-card fade-in-up">
+                    <div class="screenshot-frame">
+                        <div class="screenshot-content">
+                            <div class="screenshot-title">Survey Details</div>
+                            <div class="screenshot-elements">
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Contact Info</div>
+                                    <div class="screenshot-value">Email: user@example.com</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Family Status</div>
+                                    <div class="screenshot-value">Married, 2 Kids</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Financial Goals</div>
+                                    <div class="screenshot-value">Retirement, Education</div>
+                                </div>
+                                <div class="screenshot-element">
+                                    <div class="screenshot-label">Investment Status</div>
+                                    <div class="screenshot-value">Has existing investments</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-caption">
+                        <strong>Survey Item View</strong><br>
+                        Detailed view of individual survey responses with organized sections
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Guide Section -->
+    <section id="guide" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Step-by-Step User Guide</h2>
+            <div class="steps-container">
+                <div class="step-item fade-in-up">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Launch the App</h3>
+                        <p class="step-description">
+                            Open the SunLife Financial Planning app from your device. You'll see the main screen 
+                            with the SunLife logo and two main options: "Add Survey" and "View Records".
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Create a New Survey</h3>
+                        <p class="step-description">
+                            Tap "Add Survey" to start a new financial planning questionnaire. Fill in all required 
+                            personal information including name, email, and contact number. These fields are marked 
+                            as mandatory and must be completed before proceeding.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Complete Family Information</h3>
+                        <p class="step-description">
+                            Select your marital status from the available options (Single, Married, Single Parent). 
+                            If you're married or a single parent, the number of children field will appear for you 
+                            to specify how many kids you have.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Define Financial Goals</h3>
+                        <p class="step-description">
+                            Choose your primary financial concerns from the list including managing money, saving 
+                            for health, emergency funds, child education, or retirement. You can select multiple 
+                            options. If you choose "Others", a text field will appear for you to specify additional goals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Provide Financial Status</h3>
+                        <p class="step-description">
+                            Answer questions about your current financial situation including whether you have 
+                            existing investments, health insurance plans, knowledge about insurance products, 
+                            and if you're open to free financial planning discussions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Specify Savings Location</h3>
+                        <p class="step-description">
+                            In the final section, describe where you currently keep your savings. This could be 
+                            banks, investment accounts, or other financial instruments. Provide as much detail 
+                            as possible for better financial planning recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Save Your Survey</h3>
+                        <p class="step-description">
+                            Review all your answers and tap the "Save" button to submit your survey. The app will 
+                            validate that all required fields are completed and save your response to the local 
+                            database. You'll receive a confirmation message once the survey is successfully saved.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <h3 class="step-title">View and Manage Records</h3>
+                        <p class="step-description">
+                            From the main screen, tap "View Records" to see all saved surveys. Use the filter 
+                            options to search by name, email, marital status, or other criteria. Each record shows 
+                            key information and quick action buttons for copying contact details or editing entries.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item fade-in-up">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Export Data</h3>
+                        <p class="step-description">
+                            Use the "Export CSV" button to download all survey data in a spreadsheet format. 
+                            This is useful for analysis, reporting, or sharing with financial advisors. 
+                            The exported file includes all survey responses in a structured format.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How do I edit a saved survey?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        To edit a saved survey, go to the "View Records" screen, find the survey you want to modify, 
+                        and tap the "Edit" button. This will open the survey form with pre-filled data that you can 
+                        update and save again.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is my financial data secure?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, your data is stored locally on your device with proper security measures. The app only 
+                        requests necessary permissions for file operations and doesn't transmit data to external servers 
+                        without your explicit consent during export.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I export data to other formats besides CSV?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        Currently, the app supports CSV export format which is widely compatible with spreadsheet 
+                        applications like Excel, Google Sheets, and financial planning software. Future updates may 
+                        include additional export formats.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What happens if I don't fill in all required fields?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        The app will validate your input before saving. If any required fields (name, email, contact 
+                        number) are missing, you'll see an error message highlighting which fields need to be completed. 
+                        Optional fields can be left blank.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How many surveys can I store?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        There's no strict limit on the number of surveys you can store. The app uses efficient local 
+                        storage and can handle thousands of records. Performance may vary based on your device's 
+                        available storage and memory.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I share individual survey results?</span>
+                        <span class="material-icons faq-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can copy contact information directly from the records screen using the quick 
+                        action buttons. For complete survey data, you'll need to export to CSV and share the file 
+                        through your preferred method.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo -->
+    <section style="padding: 40px 0; background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Video Demo</h2>
+            <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 16px; padding: 24px; text-align: center; margin: 0 auto 16px auto; width: 75%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; color: var(--on-primary);">Watch this comprehensive video guide to learn how to navigate the app, create and manage financial planning surveys, collect client information, filter and search records, export data to CSV for analysis, and utilize all the powerful features designed for financial professionals.</p>
+            </div>
+            <div style="text-align: center;">
+                <video controls style="width: 100%; max-width: 350px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <source src="../Mobile Apps Demo/SunLifeFinancialPlanning.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download APK -->
+    <section style="padding: 40px 0; background: var(--background); text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Download App</h2>
+            <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 16px; padding: 24px; text-align: center; margin: 0 auto 16px auto; width: 75%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; color: var(--on-primary);">Download the latest APK file to install SunLife Financial Planning on your Android device. This package contains the complete application with all features enabled. Simply download, transfer to your device, and install to start conducting comprehensive financial planning surveys with your clients.</p>
+            </div>
+            <a href="../APK Files/SunLifeFinancialPlanning.apk" download style="display: inline-block; background: var(--primary); color: var(--on-primary); padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                Download APK
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 SunLife Financial Planning. All rights reserved. | Version 1.0.0</p>
+    </footer>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in-up elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.feature-card, .screenshot-card, .step-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic header background animation
+        let headerGradient = 0;
+        setInterval(() => {
+            headerGradient = (headerGradient + 1) % 360;
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.background = `linear-gradient(${headerGradient}deg, var(--primary) 0%, var(--primary-dark) 100%)`;
+            }
+        }, 50);
+
+        // Add loading animation for better UX
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Interactive screenshot elements
+        document.querySelectorAll('.screenshot-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Add ripple effect to navigation items
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(255,255,255,0.5)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+                ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
